@@ -1,0 +1,11 @@
+{
+    "Are you sure?": "Êtes-vous sûr?",
+    "Edit User": "Modifier l'utilisateur",
+    "Create User": "Ajouter un utilisateur",
+    "Leave empty to keep current password": "Laisser vide pour conserver le mot de passe actuel",
+    "Modify the privileges and permissions associated with a specific role.": "Modifier les privilèges et autorisations associés à un rôle spécifique.",
+    "Add Role": "Ajouter un rôle",
+    "You can revert to your original state by logging out.": "Vous pouvez revenir à votre état d’origine en vous déconnectant.",
+    "There are no objects currently displayed": "Il n’y a pas d’objets affichés actuellement",
+    "Import or create objects, or check back later for updates": "Importer ou créer des objets, ou vérifier plus tard pour les mises à jour"
+}
