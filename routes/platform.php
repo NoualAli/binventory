@@ -3,6 +3,10 @@
 declare(strict_types=1);
 
 use App\Orchid\Screens\Agency\ListScreen as AgencyListScreen;
+use App\Orchid\Screens\Equipment\ListScreen as EquipmentListScreen;
+use App\Orchid\Screens\Equipment\CreateScreen as EquipmentCreateScreen;
+use App\Orchid\Screens\Equipment\EditScreen as EquipmentEditScreen;
+use App\Orchid\Screens\Equipment\ShowScreen as EquipmentShowScreen;
 use App\Orchid\Screens\Category\CategoryListScreen;
 use App\Orchid\Screens\PlatformScreen;
 use App\Orchid\Screens\Role\RoleEditScreen;
@@ -91,4 +95,34 @@ Route::screen('agencies', AgencyListScreen::class)
         return $trail
             ->parent('platform.index')
             ->push('Agences');
+    });
+
+Route::screen('equipments', EquipmentListScreen::class)
+    ->name('platform.equipments')
+    ->breadcrumbs(function (Trail $trail) {
+        return $trail
+            ->parent('platform.index')
+            ->push('Matériels');
+    });
+
+Route::screen('equipments/create', EquipmentCreateScreen::class)
+    ->name('platform.equipments.create')
+    ->breadcrumbs(fn(Trail $trail) => $trail
+        ->parent('platform.equipments')
+        ->push(__('Create'), route('platform.equipments.create')));
+
+Route::screen('equipments/edit', EquipmentEditScreen::class)
+    ->name('platform.equipments.edit')
+    ->breadcrumbs(function (Trail $trail) {
+        return $trail
+            ->parent('platform.equipments')
+            ->push('Modifier', route('platform.equipments.edit'));
+    });
+
+Route::screen('equipments/show', EquipmentShowScreen::class)
+    ->name('platform.equipments.show')
+    ->breadcrumbs(function (Trail $trail) {
+        return $trail
+            ->parent('platform.equipments')
+            ->push('Détail', route('platform.equipments.show'));
     });
