@@ -21,6 +21,7 @@ class CategoryListScreen extends Screen
      */
     public function query(): iterable
     {
+        abort_if(!can('platform.categories.show'), 401);
         return [
             'categories' => Category::filters()->paginate(10)
         ];
@@ -56,6 +57,7 @@ class CategoryListScreen extends Screen
     {
         return [
             ModalToggle::make('Ajouter')
+            ->canSee(can('platform.categories.create'))
                 ->modal('createCategoryModal')
                 ->method('create')
                 ->icon('plus'),

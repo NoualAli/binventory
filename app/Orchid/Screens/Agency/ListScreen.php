@@ -21,6 +21,7 @@ class ListScreen extends Screen
      */
     public function query(): iterable
     {
+        abort_if(!can('platform.agencies.show'), 401);
         return [
             'agencies' => Agency::filters()->paginate(10)
         ];
