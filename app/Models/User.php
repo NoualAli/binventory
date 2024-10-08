@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Orchid\Filters\Types\Like;
 use Orchid\Filters\Types\Where;
 use Orchid\Filters\Types\WhereDateStartEnd;
@@ -66,4 +67,24 @@ class User extends Authenticatable
         'updated_at',
         'created_at',
     ];
+
+
+    /**
+     * scopes
+     */
+
+    public function scopeRole(Builder $query, string $role)
+    {
+        return $query->whereRelation('roles', 'name', $role);
+    }
+
+    public function scopeAnyRole(Builder $query, array $roles)
+    {
+        return $query->whereRelation('roles', 'name', 'in', $roles);
+    }
+
+    public function scopeIsActive(Builder $query)
+    {
+        return $query->where('is_active', true);
+    }
 }
