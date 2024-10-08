@@ -15,7 +15,8 @@ class Category extends Model
     use HasFactory, SoftDeletes, AsSource, Filterable, Sortable;
 
     protected $fillable = [
-        'name'
+        'name',
+        'created_by_id'
     ];
 
     /**

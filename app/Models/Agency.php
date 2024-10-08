@@ -18,6 +18,7 @@ class Agency extends Model
     protected $fillable = [
         'name',
         'code',
+        'created_by_id'
     ];
 
     /**

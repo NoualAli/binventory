@@ -15,8 +15,11 @@ return new class extends Migration
             $table->id();
             $table->integer('code')->unique();
             $table->string('name', 50)->unique();
+            $table->foreignId('created_by_id');
             $table->timestamps();
             $table->softDeletes();
+
+            $table->foreign('created_by_id')->on('users')->references('id')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

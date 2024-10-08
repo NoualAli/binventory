@@ -14,8 +14,10 @@ return new class extends Migration
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
             $table->string('name', 30)->unique();
+            $table->foreignId('created_by_id');
             $table->timestamps();
             $table->softDeletes();
+            $table->foreign('created_by_id')->on('users')->references('id')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
