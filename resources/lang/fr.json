@@ -7,5 +7,6 @@
     "Add Role": "Ajouter un rôle",
     "You can revert to your original state by logging out.": "Vous pouvez revenir à votre état d’origine en vous déconnectant.",
     "There are no objects currently displayed": "Il n’y a pas d’objets affichés actuellement",
-    "Import or create objects, or check back later for updates": "Importer ou créer des objets, ou vérifier plus tard pour les mises à jour"
+    "Import or create objects, or check back later for updates": "Importer ou créer des objets, ou vérifier plus tard pour les mises à jour",
+    "There are no records": "Il n’y a pas d’enregistrements"
 }
