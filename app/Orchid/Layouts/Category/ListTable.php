@@ -6,6 +6,7 @@ use App\Models\Category;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Actions\DropDown;
 use Orchid\Screen\Actions\ModalToggle;
+use Orchid\Screen\Fields\CheckBox;
 use Orchid\Screen\Fields\Input;
 use Orchid\Screen\Layouts\Table;
 use Orchid\Screen\TD;
@@ -39,10 +40,12 @@ class ListTable extends Table
                     ->icon('bs.three-dots-vertical')
                     ->list([
                         ModalToggle::make('Edit')
+                            ->canSee(can('platform.categories.edit'))
                             ->modal('updateCategoryModal')
                             ->method('edit', ['category' => $category->id])
                             ->icon('bs.pencil'),
                         Button::make(__('Delete'))
+                            ->canSee(can('platform.categories.delete'))
                             ->icon('bs.trash3')
                             ->confirm('Êtes-vous sûr de vouloir supprimer la catégorie <b>' . $category->name . '</b>')
                             ->method('delete', [
@@ -51,5 +54,22 @@ class ListTable extends Table
                     ])),
 
         ];
+    }
+
+    /**
+     * @return string
+     */
+    protected function textNotFound(): string
+    {
+        return "Vous n'avez enregistré aucune catégorie";
+    }
+
+
+    /**
+     * @return bool
+     */
+    protected function striped(): bool
+    {
+        return true;
     }
 }

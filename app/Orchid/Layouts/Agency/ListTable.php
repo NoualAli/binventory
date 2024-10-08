@@ -40,10 +40,12 @@ class ListTable extends Table
                     ->icon('bs.three-dots-vertical')
                     ->list([
                         ModalToggle::make('Edit')
+                        ->canSee(can('platform.agencies.edit'))
                             ->modal('updateAgencyModal')
                             ->method('edit', ['agency' => $agency->id])
                             ->icon('bs.pencil'),
                         Button::make(__('Delete'))
+                        ->canSee(can('platform.agencies.delete'))
                             ->icon('bs.trash3')
                             ->confirm('Êtes-vous sûr de vouloir supprimer l\'agence <b>' . $agency->fullname . '</b>')
                             ->method('delete', [
@@ -51,5 +53,22 @@ class ListTable extends Table
                             ]),
                     ])),
         ];
+    }
+
+    /**
+     * @return string
+     */
+    protected function textNotFound(): string
+    {
+        return "Vous n'avez enregistré aucune agence";
+    }
+
+
+    /**
+     * @return bool
+     */
+    protected function striped(): bool
+    {
+        return true;
     }
 }
