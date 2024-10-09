@@ -146,7 +146,6 @@ class ListScreen extends Screen
     {
         abort_if(!can('platform.equipments.delete'), 401);
         abort_if(!(!anyRole(['admin', 'chef-de-service']) || !in_array(Auth::user()->id,$equipment->technicians()->get()->pluck('id')->toArray())), 401);
-        dd($redirect);
         try {
             if ($equipment->delete()) {
                 Toast::success("Matériel supprimer avec succès");
