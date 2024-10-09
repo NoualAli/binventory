@@ -86,7 +86,7 @@ class EditScreen extends Screen
 
                 // Attach input discharges
                 if (!empty($inputDischarges)) {
-                    $this->equipment->inputDischarge()->attach($inputDischarges);
+                    $this->equipment->inputDischarge()->sync($inputDischarges);
                 }
 
                 // Sync technicians
@@ -96,7 +96,7 @@ class EditScreen extends Screen
 
                 // Create a new state
                 $actualState = $this->equipment->state()->first();
-                $stateVal = count($technicians) > 0 ? EquipmentStateEnum::PENDING_ASSIGNATION : EquipmentStateEnum::ASSIGNED;
+                $stateVal = count($technicians) > 0 || !anyRole('technicien') ? EquipmentStateEnum::ASSIGNED : EquipmentStateEnum::PENDING_ASSIGNATION;
                 if ($actualState->state !== $stateVal) {
                     $this->equipment->states()->update(['is_current' => false]);
                     $this->equipment->states()->create([

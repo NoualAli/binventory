@@ -59,16 +59,14 @@ class CreateScreen extends Screen
 
                 // Attach input discharges
                 if (!empty($inputDischarges)) {
-                    foreach ($inputDischarges as $id) {
-                        $equipment->attachments()->create($id);
-                    }
+                    $equipment->attachments()->attach($inputDischarges);
                 }
 
                 // Attach technicians
                 $equipment->technicians()->attach($technicians, ['created_by_id' => Auth::user()->id]);
 
                 // Create a new state
-                $stateVal = count($technicians) > 0 || !anyRole('technicien') ? EquipmentStateEnum::PENDING_ASSIGNATION : EquipmentStateEnum::ASSIGNED;
+                $stateVal = count($technicians) > 0 || !anyRole('technicien') ? EquipmentStateEnum::ASSIGNED : EquipmentStateEnum::PENDING_ASSIGNATION;
                 $equipment->states()->create([
                     'state' => $stateVal,
                     'is_current' => true,
